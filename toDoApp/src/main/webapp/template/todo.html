@@ -1,0 +1,56 @@
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+    </style>
+
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<!--<body ng-controller="taskCtrl">-->
+    <div class="container">
+
+        <!-- HEADER AND TODO COUNT -->
+        <div class="jumbotron text-center">
+            <h1>I'm ur Todo-Manager <span class="label label-info">{{ todo.length }}</span></h1>
+        </div>
+
+        <!-- TODO LIST -->
+        <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+
+                <!-- LOOP OVER THE TODOS IN $scope.todos -->
+                <div class="checkbox" ng-repeat="todo in todos">
+                	
+                    <label>
+                        <input type="checkbox" ng-click="deleteTodo(deleteTodo.id)">
+                    </label>
+                    <h3>Your Todo's Are: </h3>
+                    <p>Title: {{ todo.title }}</p>
+                    <p>Description: {{todo.description}}</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FORM TO CREATE TODOS -->
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="Please Add Tittle Here !" ng-model="formData.title" ng-disabled="myForm.$invalid" required>
+                        <input type="text" class="form-control input-lg text-center" placeholder="Please Add Your Todo Task Here !" ng-model="formData.description" ng-disabled="myForm.$invalid" required>
+                  
+                    </div>
+
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+                	<button type="delete" class="btn btn-primary btn-lg" ng-click="deleteTodo">Delete</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+<!--
+</body>
+</html>-->
