@@ -1,0 +1,12 @@
+
+        <div>
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title" contenteditable ng-model="updateTodo.title" ng-bind-html="updateTodo.title"></h3>
+        </div>
+        <div class="modal-body" id="modal-body" contenteditable="true" ng-model="updateTodo.description " ng-bind-html="updateTodo.description">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" data-ng-click="$ctrl.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-discard data-ng-click="cancel()">Cancel</button>
+        </div>
+        </div>
