@@ -1,184 +1,56 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
-                        <div class="container-fluid" >
-                            <div class="navbar-header" >
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand" data-toggle="menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
-<!-- href="#menu-toggle" --> 
-                            </div>
-                            <div id="navbar" class="navbar-collapse collapse">
-                                <ul class="nav navbar-nav navbar-right">
-                           <li> <form class="navbar-form navbar-right" >
-                               		<div class="input-group" style="width: 900px">
-                                         <input type="text" class="form-control" placeholder="Search..."  name="search" ng-model="searchtext">
-                                      	<div class="input-group-btn">
-                                        	<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search" style="line-height: 1.5" ></span></button>
-                                      	</div>
-                    				</div>
-                                </form>
-                              </li>
-                                  <li><a href="#" id="list"><span class="glyphicon glyphicon-refresh" ng-click="readTodo()"></span></a></li>
-                                  <li><button id="list" type="button" class="btn btn-dafault glyphicon" ng-click="isList = !isList" ng-class="{'glyphicon-list': !isList, 'glyphicon-th-large': isList}" style="margin-top: 5px"></button></li>
-                                      <li><a ui-sref="login"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
-                                      <!-- <li><a ui-sref="logout" id="logout"><span class="glyphicon glyphicon-log-out"></span></a></li> -->
-                                </ul>
-                                
-                            </div>
-                        </div>
-                    </nav>
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+    </style>
 
-                    <div id="wrapper" class="toggled">
-                        <div class="container-fluid ">
-                            <!-- Sidebar -->
-                            <div id="sidebar-wrapper" class="col-md-4-offset col-sm-4-offset col-lg-4-offset">
-                                <ul class="sidebar-nav">
-                                  	<li class="sidebar-brand">
-                                        <br>
-                                    </li>
-                                    <li class="sidebar-brand" >
-                                        <a href="#" class="navbar-brand" >
-                                            <span class="glyphicon glyphicon-user" data-toggle="modal" data-target="#basicModal" aria-hidden="true"></span>
-                                            {{user.fullName}} 
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href=""><span class="glyphicon glyphicon-qrcode aria-hidden="true"></span> {{user.fullName}}</a>
-                                    
-                                      
-                                        <a href=""><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{user.mobile}}</a>
-                                    
-                                    
-                                        <a href=""><span class="gglyphicon glyphicon-envelope" aria-hidden="true"></span> {{user.email}}</a>
-                                    </li>
-                                     <li>
-                                        <a href=""><div class="glyphicon glyphicon-leaf" id="notes"> Notes</div></a>
-                                    </li>
-                                    <li>
-                                       <a href=""><div class="glyphicon glyphicon-trash" id="trash1"> Trash</div></a>
-                                   </li>
-                                    <li>
-                                        <a href=""><div class="glyphicon glyphicon-hand-up" id="reminder"> Reminder</div></a>
-                                    </li>
-                                    <li>
-                                        <a href=""><div class="glyphicon glyphicon-cog" id="setting"> Setting</div></a>
-                                    </li>
-                                  	<li>
-                                      <a href=""><div class="glyphicon glyphicon-asterisk" id="about"> About</div></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /#sidebar-wrapper -->
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+<!--<body ng-controller="taskCtrl">-->
+    <div class="container">
 
-                            <!-- Page Content -->
-                            <div id="page-content-wrapper" >
-                                <div class="container-fluid col-md-8-offset col-sm-8-offset col-lg-8-offset col-xs-12-offset">
-                                    <div class="row">
-                                    <form name="todoForm">
-                                        <div class="">
-                                          <div class="panel-group" style="margin-right:12%;">
-                                          
-                                              <div class="panel panel-default">
-                                                  <!-- <div class="panel-heading"> -->
-                                                      <h4 class="panel-title">
-                                                        <a data-toggle="collapse" data-target="#collapse1" > 
-                                                        <input type="text" style="border:none;box-shadow:none;" ng-model="title" placeholder="Tittle" class="form-control" required></a>
-                                                      </h4>
-                                                  <!-- </div> -->
-                                                  <div id="collapse1" class="panel-collapse collapse">
-                                                      <!-- <div class="panel-body"> -->
-                                                        <textarea rows="3" multiline="true" style="border:none;box-shadow: none;" ng-model="description" placeholder="Description" class="form-control" required></textarea>
-                                                          <label id="date" style="margin-left:10px;">Reminder:<input type="date"  style="border:none;" ng-model="reminder" class="form-control" required></label>
-                                                         <!-- <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button> -->
-                                                          <label id="add" ng-click="(!todoForm.$invalid?createTodo():'')" style="margin-right:10px;">Done</label>
-                                                      <!-- </div> -->
-                                                  </div>
-                                              </div>
-                                        </div>
-                                    </div>
-                                    </form>
-                                    <div class="row " style="margin-left:10%;">
-                                        <div class="col-md-3-offset col-sm-3-offset col-lg-3-offset col-xs-12-offset">
-                                          <div class="cont" ng-init="readTodo()" ng-class="{list: isList, grid: !isList}">
-                                              <div class="cardRow slides" >
-                                                  <div class="card" ng-class="{'col-xs-12':!isList, 'col-md-4':!isList, 'col-sm-4':!isList,'col-lg-3':!isList}" ng-repeat="x in todos | orderBy:'-'| filter :searchtext">
-                                                      <div class="slideDown card-4">
-                                                          <!-- <h3 style="overflow: hidden;text-overflow:ellipsis;">Tittle : {{ x.title | limitTo: 10 }}{{x.title.length > 10 ? '...' : ''}}</h3> -->
-                                                          <h3 style="overflow: hidden;text-overflow:ellipsis;" ng-bind-html = "x.title | nl2br">Tittle :</h3>
-                                                          <div style="overflow:hidden; text-overflow:ellipsis;"  ng-bind-html = "x.description | nl2br">Description :</div>
-                                                          <!-- <div style="overflow:hidden; text-overflow:ellipsis;" >Description : {{ x.description | limitTo: 10 }}{{x.description.length > 10 ? '...' : ''}}</div> -->
-                                                          <div style="overflow:hidden; text-overflow:ellipsis;" >Reminder : {{x.reminder |date}}</div>
-                                                          
-                                                          <div style="padding-top: 10px margin-left:10px;" id="row">
-                                                              <div class="row">
-                                                                  <div class="col-xs-12 col-md-12">
-                                                                      <a><span class="glyphicon glyphicon-trash "  id="trash" ng-click="deleteTodo(x.id)"></span></a>
-                                                                      <a><span class="glyphicon glyphicon-pencil " id="pencil" ng-click="triggerEditMode(x)"></span></a>
-                                                                      <span>{{todo.reminder | date}}</span>
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /#page-content-wrapper -->
-                        </div>
+        <!-- HEADER AND TODO COUNT -->
+        <div class="jumbotron text-center">
+            <h1>I'm ur Todo-Manager <span class="label label-info">{{ todo.length }}</span></h1>
+        </div>
+
+        <!-- TODO LIST -->
+        <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+
+                <!-- LOOP OVER THE TODOS IN $scope.todos -->
+                <div class="checkbox" ng-repeat="todo in todos">
+                	
+                    <label>
+                        <input type="checkbox" ng-click="deleteTodo(deleteTodo.id)">
+                    </label>
+                    <h3>Your Todo's Are: </h3>
+                    <p>Title: {{ todo.title }}</p>
+                    <p>Description: {{todo.description}}</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FORM TO CREATE TODOS -->
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <input type="text" class="form-control input-lg text-center" placeholder="Please Add Tittle Here !" ng-model="formData.title" ng-disabled="myForm.$invalid" required>
+                        <input type="text" class="form-control input-lg text-center" placeholder="Please Add Your Todo Task Here !" ng-model="formData.description" ng-disabled="myForm.$invalid" required>
+                  
                     </div>
-                    <!-- /#wrapper -->
-</div>
 
-
-
-
-<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title" id="myModalLabel">user profile</h4>
-    </div> -->
-
-    <form>
-        <div class="modal-body">
-          <div class="col-md-12 col-lg-12">
-              <div class="form-group">
-          <img ng-src="{{user.profile[0].value}}" class="img-circle" alt="profile picture" width="70" height="70">
-        </div>
-      </div>
-            <div class="col-md-12 col-lg-12">
-                <div class="form-group">
-                    <label>User Name:</label>{{user.name || user.firstName}} {{user.lastName}}
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-12">
-                <div class="form-group">
-                    <label>Email:</label>{{user.email}}
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-12">
-                <div class="form-group">
-                    <label>Gender:</label>{{user.gender}}
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-12">
-                <div class="form-group">
-                    <label>Mobile Number:</label>{{user.mobileNo}}
-                </div>
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+                	<button type="delete" class="btn btn-primary btn-lg" ng-click="deleteTodo">Delete</button>
+                </form>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="reset" class="btn btn-danger" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-    </form>
+
     </div>
-  </div>
-</div>
+<!--
+</body>
+</html>-->

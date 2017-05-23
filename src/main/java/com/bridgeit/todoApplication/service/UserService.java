@@ -16,6 +16,4 @@ public interface UserService {
 
 	User authUser(String email, String password);
 
-	User getEntityByEmailId(String email);
-
 }

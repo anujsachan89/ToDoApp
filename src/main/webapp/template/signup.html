@@ -12,7 +12,7 @@
                       <input type="hidden" ng-model="ctrl.id" />
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="uname"style="margin-left: 10px;" >Name</label>
+                              <label class="col-md-2 control-lable" for="uname">Name</label>
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.user.fullName" id="uname" class="username form-control input-sm" placeholder="Enter your Full Name" required ng-minlength="3"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
@@ -27,7 +27,7 @@
                       
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="mobile"style="margin-left: 10px;">Mobile</label>
+                              <label class="col-md-2 control-lable" for="mobile">Mobile</label>
                               <div class="col-md-7">
                                   <input type="text" ng-model="ctrl.user.mobile" id="mobile" class="form-control input-sm" placeholder="Enter your mobile Number." required />
                                   <div class="has-error" ng-show="myForm.$dirty">
@@ -41,7 +41,7 @@
 
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="email"style="margin-left: 10px;">Email</label>
+                              <label class="col-md-2 control-lable" for="email">Email</label>
                               <div class="col-md-7">
                                   <input type="email" ng-model="ctrl.user.email" id="email" class="email form-control input-sm" placeholder="Enter your Email" required/>
                                   <div class="has-error" ng-show="myForm.$dirty">
@@ -52,9 +52,9 @@
                           </div>
                       </div>
 
-						<div class="row" >
-                          <div class="form-group col-md-12" >
-                              <label class="col-md-2 control-lable" for="password" style="margin-left: 10px;">Password</label>
+						<div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="password">Password</label>
                               <div class="col-md-7">
                                   <input type="password" ng-model="ctrl.user.password" id="password" class="password form-control input-sm" placeholder="Enter your Password" required />
                                   <div class="has-error" ng-show="myForm.$dirty">
@@ -66,7 +66,7 @@
                           </div>
                       </div>
                       <div class="row">
-                          <div class="form-actions floatRight" style="margin-left:18%">
+                          <div class="form-actions floatRight">
                               <input type="submit"  value="{{!ctrl.id ? 'Signup' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-primary btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                           </div>

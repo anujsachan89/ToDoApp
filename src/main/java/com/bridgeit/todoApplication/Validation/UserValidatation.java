@@ -18,6 +18,7 @@ public class UserValidatation implements Validator {
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	String STRING_PATTERN = "[a-zA-Z]+";
 	String MOBILE_PATTERN = "[0-9]{10}";
+	// String ID_PATTERN = "[0-9]+";
 
 	public boolean supports(Class<?> arg0) {
 		// TODO Auto-generated method stub
@@ -27,6 +28,21 @@ public class UserValidatation implements Validator {
 	public void validate(Object target, Errors errors) {
 		User user = (User) target;
 
+		/*
+		 * ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id",
+		 * "required.id", "Id is required.");
+		 * 
+		 * // input string conatains numeric values only if (user.getId() !=
+		 * null) { pattern = Pattern.compile(ID_PATTERN); matcher =
+		 * pattern.matcher(student.getId().toString()); if (!matcher.matches())
+		 * { errors.rejectValue("id", "id.incorrect", "Enter a numeric value");
+		 * }
+		 * 
+		 * // input string can not exceed that a limit if
+		 * (User.getId().toString().length() > 5) { errors.rejectValue("id",
+		 * "id.exceed", "Id should not contain more than 5 digits"); } }
+		 */
+
 		ValidationUtils.rejectIfEmpty(errors, "fullName", "required.fullName", " Name is required.");
 
 		// input string conatains characters only
@@ -34,10 +50,21 @@ public class UserValidatation implements Validator {
 		{
 			pattern = Pattern.compile(STRING_PATTERN);
 			matcher = pattern.matcher(user.getFullName());
-			
+			/*if (!matcher.matches()) {
+				errors.rejectValue("firstName", "firstName.containNonChar", "Enter a valid Firstname");
+			}*/
 		}
 
-		
+		/*ValidationUtils.rejectIfEmpty(errors, "lastName", "required.lastName", "Last Name is required.");
+
+		if ( user.getLastName() != null && !user.getLastName().isEmpty() )
+		{
+			pattern = Pattern.compile(STRING_PATTERN);
+			matcher = pattern.matcher(user.getFullName());
+			if (!matcher.matches()) {
+				errors.rejectValue("lastName", "lastName.containNonChar", "Enter a valid Lastname");
+			}
+		}*/
 
 		// email validation in spring
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required.email", "Email is required.");
@@ -65,7 +92,11 @@ public class UserValidatation implements Validator {
 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "required.password", "Password is required.");
 
-
+		// password matching validation
+		/*if (!user.getPassword().equals(user.getConfirmPassword())) {
+			errors.rejectValue("confirmPassword", "password.mismatch", "Password does not match");
+		}
+*/
 	}
 
 }

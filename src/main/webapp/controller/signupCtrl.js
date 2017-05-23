@@ -2,12 +2,6 @@ var myApp = angular.module('routerApp');
 myApp.controller("SignupCtrl", function ($scope,$state,SignupService) {
             console.log("Signup Controller Working..");
             var self= this;
-            self.user = {};
-            this.reset=function(){
-            	console.log(self.user);
-            	self.user={};
-            	console.log(self.user);
-            }
                this.Signup = function() {
                    var user = self.user;
                    console.log(user)

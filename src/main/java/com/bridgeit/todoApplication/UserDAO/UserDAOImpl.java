@@ -72,14 +72,4 @@ public class UserDAOImpl implements UserDAO{
 				.add(Restrictions.eq("password", password))).uniqueResult();
 		return user;
 	}
-
-	
-	public User getEntityByEmailId(String email) {
-		
-		session = sessionFactory.getCurrentSession();
-		Criteria ctr = session.createCriteria(User.class);
-		ctr.add(Restrictions.eq("email", email));
-		User user = (User) ctr.uniqueResult();
-		return user;
 	}
-	}	

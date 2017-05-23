@@ -1,11 +1,7 @@
 var myApp = angular.module('routerApp');
 myApp.controller("loginCtrl",function($scope,$state, loginService){
 console.log("Login Controller Working..");
-this.reset=function(){
-	console.log($scope.user);
-	$scope.user={};
-	console.log($scope.user);
-}
+
 this.login = function () {
 
 		var httpObje = loginService.login($scope.user);

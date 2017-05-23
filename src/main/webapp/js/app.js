@@ -1,4 +1,4 @@
-var routerApp = angular.module('routerApp', ['ui.router','ngAnimate', 'ngSanitize','ui.bootstrap']);
+var routerApp = angular.module('routerApp', ['ui.router']);
 
 routerApp.config(function($stateProvider, $urlRouterProvider) {
     
@@ -27,7 +27,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         .state('home.todo', {
             url: '/todo',
             templateUrl: 'template/todo.html',
-            controller:"taskCtrl"
+            controller: "taskCtrl"
             
         })
 

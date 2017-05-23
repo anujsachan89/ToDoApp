@@ -1,9 +1,11 @@
 package com.bridgeit.todoApplication.controller;
 
-import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,12 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bridgeit.todoApplication.Facebook.Facebook;
 import com.bridgeit.todoApplication.Json.ErrorResponse;
 import com.bridgeit.todoApplication.Json.LoginResponse;
 import com.bridgeit.todoApplication.Json.Response;
 import com.bridgeit.todoApplication.Json.TokenResponse;
-import com.bridgeit.todoApplication.model.FacebookProfile;
 import com.bridgeit.todoApplication.model.User;
 import com.bridgeit.todoApplication.service.UserService;
 
@@ -71,73 +71,5 @@ public class LoginController {
 
 		
 		return tr;
-	}
-	
-	@RequestMapping(value="/loginwithfacebook")
-	public void loginWithFB(HttpServletRequest pRequest, HttpServletResponse pResponse) throws IOException 
-	{
-		Facebook fb = new Facebook();
-		
-		String lsr = pRequest.getRequestURL().toString();
-		String appUrl = lsr.substring(0, lsr.lastIndexOf("/") );
-		
-		String unId  = UUID.randomUUID().toString();
-		pRequest.getSession().setAttribute("STATE", unId);
-		
-		String fbUrl = fb.getFBUrl( appUrl, unId );
-		
-		// redirect user to FB
-		pResponse.sendRedirect( fbUrl );
-		return;
-	}
-	
-	@RequestMapping(value="/postfacebooklogin")
-	public void postFBLogin(HttpServletRequest pRequest, HttpServletResponse pResponse) throws Exception 
-	{
-		String sessionState = (String) pRequest.getSession().getAttribute("STATE");
-		String stateFromFB = pRequest.getParameter("state");
-		if( sessionState == null || !sessionState.equals(stateFromFB) )
-		{
-			System.out.println("State is empty");
-			// Redirect to FB again or show error to user
-			pResponse.sendRedirect("loginwithfacebook");
-			return;
-		}
-		
-		String error = pRequest.getParameter("error");
-		if( error!=null && error.trim().isEmpty())
-		{
-			pResponse.sendRedirect("login");
-			return;
-		}
-		
-		String authCode = pRequest.getParameter("code");
-		
-		String lsr = pRequest.getRequestURL().toString();
-		String appUrl = lsr.substring(0, lsr.lastIndexOf("/") );
-		
-		Facebook fb = new Facebook();
-		FacebookProfile profile = fb.authUser(authCode, appUrl);
-
-		User user = userservice.getEntityByEmailId( profile.getEmail()  );
-		if( user == null)
-		{
-			user = new User();
-			user.setEmail(profile.getEmail());
-			
-			userservice.addEntity(user);
-		}
-		
-		String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
-		String refreshToken = UUID.randomUUID().toString().replaceAll("-", "");
-
-		HttpSession session = pRequest.getSession();
-		
-				
-		
-		
-		session.setAttribute("user", user);
-		pResponse.sendRedirect(appUrl + "/#!/home/todo");
-		return;
 	}
 }
