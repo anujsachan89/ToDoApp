@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
@@ -6,7 +6,7 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-<tx:annotation-driven transaction-manager="transactionManager"/>
+<tx:annotation-driven transaction-manager="transactionManager" />
 	<mvc:annotation-driven />
 	
 	<!--controller and services scan -->
@@ -38,9 +38,9 @@
 	<bean id="pooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ToDo_DB" />
-		<property name="user" value="root" />
-		<property name="password" value="root" />
+		<property name="jdbcUrl" value="jdbc:mysql://sql12.freemysqlhosting.net:3306/sql12175998" />
+		<property name="user" value="sql12175998" />
+		<property name="password" value="XmW4Ptam6d" />
 		<property name="maxPoolSize" value="100" />
 		<property name="minPoolSize" value="3" />
 		<property name="maxStatements" value="4" />
@@ -72,7 +72,7 @@
 			<props>
 				<prop key="hibernate.dialect"> org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 		</property>
 	</bean>
