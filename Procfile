@@ -1,2 +1,2 @@
-web: sh target
+web: sh target/toDoApp
 
