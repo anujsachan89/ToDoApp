@@ -1,0 +1,14 @@
+/target/
+*.*~
+bin
+.metadata
+.recommenders
+RemoteSystemsTempFiles
+.settings
+*.class
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+# Package Files #
+*.jar
+*.war
+*.ear
