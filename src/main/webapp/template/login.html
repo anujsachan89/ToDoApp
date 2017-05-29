@@ -1,53 +1,82 @@
-<div class="jumbotron text-center">
-    <h1>ToDo App Home Page</h1>
-    <a ui-sref="signup" class="btn btn-primary">Signup</a>
+<!-- Mixins-->
+<!-- Pen Title-->
+<link rel="stylesheet" href="assets/style_material.css"> 
+<div class="pen-title">
+  <h1>Todo Login</h1>
 </div>
-
- <div class="panel panel-default">
-              <div class="panel-heading"><span class="lead">User Registration Form </span></div>
-              <div class="formcontainer">
-                  <form ng-submit="ctrl.login()" name="myForm" class="form-horizontal">
-                      <div class="row">
-                          <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="email">Email</label>
-                              <div class="col-md-7">
-                                  <input type="email" ng-model="user.email" id="email" class="email form-control input-sm" placeholder="Enter your Email" required/>
-                                  <div class="has-error" ng-show="myForm.$dirty">
-                                      <span ng-show="myForm.email.$error.required">This is a required field</span>
-                                      <span ng-show="myForm.email.$invalid">This field is invalid </span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-
-		<div class="row">
-                          <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="password">Password</label>
-                              <div class="col-md-7">
-                                  <input type="password" ng-model="user.password" id="password" class="password form-control input-sm" placeholder="Enter your Password" required />
-                                  <div class="has-error" ng-show="myForm.$dirty">
-                                      <span ng-show="myForm.password.$error.required">This is a required field</span>
-                                 
-                                      <span ng-show="myForm.password.$invalid">This field is invalid </span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-			<div class="row">
-                          <div class="form-group col-md-12">
-                                  <div class="has-error" ng-show="myForm.$dirty">
-                                      <span ng-show="errorMessage" ng-bind="errorMessage"></span>
-                                  </div>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="form-actions floatRight">
-                              <input type="submit"  value="{{!ctrl.user.id ? 'Login' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
-                             <button type="button" ng-click="ctrl.reset()" class="btn btn-primary btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
-                         </div>
-                      </div>
-                  </form>
+<div class="container">
+  <div class="card"></div>
+  <div class="card" ng-controller="loginCtrl as ctrl">
+    <h1 class="title">Login</h1>
+    <form autocomplete="off" ng-submit="ctrl.login()" name="loginForm" class="form-horizontal">
+      <div class="input-container">
+        <input autocomplete="off" type="email" ng-model="user.email" id="email" class="email" required="required"/>
+        <label for="#{label}">Email</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input autocomplete="off" type="password" ng-model="user.password" id="password" class="password" required="required"/>
+        <label for="#{label}">Password</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+      	<div class="form-group col-md-12">
+        	<div class="has-error" ng-show="loginForm.$dirty">
+            	<span ng-show="errorMessage" ng-bind="errorMessage"></span>
               </div>
-          </div>
-        </div>
+		</div>
+	</div>
+      <div class="button-container">
+        <button ng-disabled="loginForm.$invalid"><span>Login</span></button>
+           <a href="loginwithfacebook" class="btn button-container1" style= "color:#ed2553">
+    	<i class="fa fa-facebook-official fa-4x" aria-hidden="true"></i></a>
+    
+   	 	<a href="loginwithgoogle" class="btn button-container1"style= "color:#ed2553">
+   		 <i class="fa fa-google-plus-square fa-4x" aria-hidden="true"></i></a>
+    </form>
+      </div>
+     <!--  <div class="footer"><a href="#">Forgot your password?</a></div> -->
+    
+  </div>
+  <div class="card alt" ng-controller="SignupCtrl as ctrl">
+    <div class="toggle"></div>
+    <h1 class="title">Register
+      <div class="close"></div>
+    </h1>
+    <form  ng-submit="ctrl.Signup()" name="myForm">
+      <div class="input-container">
+        <input type="text" ng-model="ctrl.user.fullName" required="required"/>
+        <label for="#{label}">Name</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="number" ng-model="ctrl.user.mobile" id="mobile" min-length="10" required="required"/>
+        <label for="#{label}">Mobile Number</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="email" ng-model="ctrl.user.email" id="email"  required="required"/>
+        <label for="#{label}">Email Id</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="password" ng-model="ctrl.user.password" id="password" required="required"/>
+        <label for="#{label}">Password</label>
+        <div class="bar"></div>
+      </div>
+      <div class="button-container">
+        <button ng-disabled="signupForm.$invalid"><span>SignUp</span></button>
+       
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+$('.toggle').on('click', function() {
+	  $('.container').stop().addClass('active');
+	});
 
+	$('.close').on('click', function() {
+	  $('.container').stop().removeClass('active');
+	});
+	</script>

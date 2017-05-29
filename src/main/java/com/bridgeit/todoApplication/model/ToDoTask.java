@@ -25,8 +25,21 @@ public class ToDoTask  implements Serializable{
 	private String title;
 	private String description;
 	
-	private Date date;
+	private Date reminder;
+	private String cardColor;
 	
+	public String getCardColor() {
+		return cardColor;
+	}
+
+	public void setCardColor(String cardColor) {
+		this.cardColor = cardColor;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="user_Id")
 	private User user;
@@ -58,13 +71,7 @@ public class ToDoTask  implements Serializable{
 		this.user = user;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
 
 	public String getDescription() {
 		return description;
@@ -73,5 +80,12 @@ public class ToDoTask  implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	public Date getReminder() {
+		return reminder;
+	}
+
+	public void setReminder(Date reminder) {
+		this.reminder = reminder;
+	}	
 }

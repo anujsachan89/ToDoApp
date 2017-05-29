@@ -1,4 +1,4 @@
-var routerApp = angular.module('routerApp', ['ui.router']);
+var routerApp = angular.module('routerApp', ['ui.router','ngAnimate', 'ngSanitize','ui.bootstrap', 'ui.bootstrap.datetimepicker']);
 
 routerApp.config(function($stateProvider, $urlRouterProvider) {
     
@@ -13,21 +13,19 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         })
             .state('login', {
             url: '/login',
-            templateUrl: 'template/login.html',
-            controller: "loginCtrl",
-            controllerAs:"ctrl"
+            templateUrl: 'template/login.html'
         })
- 	.state('signup', {
+ 	/*.state('signup', {
             url: '/signup',
             templateUrl: 'template/signup.html',
             controller: "SignupCtrl",
             controllerAs:"ctrl"
-        })
+        })*/
         // nested list with custom controller
         .state('home.todo', {
             url: '/todo',
             templateUrl: 'template/todo.html',
-            controller: "taskCtrl"
+            controller:"taskCtrl"
             
         })
 

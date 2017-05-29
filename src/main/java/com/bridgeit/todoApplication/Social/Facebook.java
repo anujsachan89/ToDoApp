@@ -1,4 +1,4 @@
-package com.bridgeit.todoApplication.Facebook;
+package com.bridgeit.todoApplication.Social;
 import java.io.IOException;
 
 import javax.ws.rs.core.MediaType;
@@ -48,11 +48,6 @@ public class Facebook {
 		Response response =  target.request().accept(MediaType.APPLICATION_JSON).get();
 		FacebookToken fbToken = response.readEntity(FacebookToken.class);
 		
-		//String sr = response.readEntity(String.class);
-		//System.out.println( sr );
-		//ObjectMapper mapper = new ObjectMapper();
-		//FBToken fbToken = mapper.readValue(sr, FBToken.class);
-		
 		client.close();
 		
 		return fbToken.getAccess_token();
@@ -68,12 +63,7 @@ public class Facebook {
 		Response response =  target.request().accept(MediaType.APPLICATION_JSON).get();
 		System.out.println( response );
 		FacebookProfile profile = response.readEntity(FacebookProfile.class);
-		
-		//String sr = response.readEntity(String.class);
-		//System.out.println( sr );
-		//ObjectMapper mapper = new ObjectMapper();
-		//FBProfile profile = mapper.readValue(sr, FBProfile.class);
-		
+	
 		client.close();
 		
 		return profile;

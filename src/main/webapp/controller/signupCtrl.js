@@ -2,6 +2,12 @@ var myApp = angular.module('routerApp');
 myApp.controller("SignupCtrl", function ($scope,$state,SignupService) {
             console.log("Signup Controller Working..");
             var self= this;
+            self.user = {};
+            this.reset=function(){
+            	console.log(self.user);
+            	self.user={};
+            	console.log(self.user);
+            }
                this.Signup = function() {
                    var user = self.user;
                    console.log(user)
@@ -19,6 +25,7 @@ myApp.controller("SignupCtrl", function ($scope,$state,SignupService) {
             var resp = data.data;
             if( resp.status == 1)
             {
+          	  $('.container').stop().removeClass('active');
             	$state.go("login");
             }
             else
@@ -43,7 +50,7 @@ myApp.controller("SignupCtrl", function ($scope,$state,SignupService) {
 myApp.service('SignupService',function($http){
 	this.signup = function(user){ 
 		return $http({
-			url:"http://localhost:8080/toDoApp/register",
+			url:"/toDoApp/register",
 			method:"post",
 			data:user
 		});

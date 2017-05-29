@@ -49,5 +49,10 @@ private static final AtomicLong counter = new AtomicLong();
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public User getEntityByEmailId(String email) {
+		
+		return userDAO.getEntityByEmailId(email);
+	}
 
 }

@@ -1,22 +1,21 @@
 package com.bridgeit.todoApplication.controller;
 	
-import java.util.Date;
-	import java.util.List;
+import java.util.List;
 
 	import javax.servlet.http.HttpServletRequest;
 	import javax.servlet.http.HttpSession;
 
 	import org.apache.log4j.Logger;
 	import org.springframework.beans.factory.annotation.Autowired;
-	import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 	import org.springframework.web.bind.annotation.PathVariable;
 	import org.springframework.web.bind.annotation.RequestBody;
 	import org.springframework.web.bind.annotation.RequestMapping;
 	import org.springframework.web.bind.annotation.RequestMethod;
 	import org.springframework.web.bind.annotation.ResponseBody;
-	import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
-
-import com.bridgeit.todoApplication.Json.ErrorResponse;
+	import com.bridgeit.todoApplication.Json.ErrorResponse;
 import com.bridgeit.todoApplication.Json.Response;
 import com.bridgeit.todoApplication.Json.TaskResponse;
 import com.bridgeit.todoApplication.model.ToDoTask;
@@ -39,7 +38,7 @@ import com.bridgeit.todoApplication.service.ToDoService;
 			HttpSession sess = request.getSession();
 			User user = (User) sess.getAttribute("user");
 			todo.setUser(user);
-			todo.setDate(new Date());
+			logger.info("Task Created"+user);
 			try {
 
 				toDoService.addToDoTask(todo);
@@ -47,7 +46,9 @@ import com.bridgeit.todoApplication.service.ToDoService;
 				tr.setDoTask(todo);
 				tr.setStatus(1);
 				tr.setMessage("Task added successfully");
+				logger.info("task created with name: "+todo);
 				return tr;
+				
 			} catch (Exception e) {
 				logger.error("ToDoTask Add exception", e);
 				er = new ErrorResponse();
@@ -82,7 +83,7 @@ import com.bridgeit.todoApplication.service.ToDoService;
 			}
 		}
 
-		@RequestMapping(value = "delete/{id}", method = RequestMethod.POST)
+		@RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
 		public @ResponseBody Response deleteTask(@PathVariable("id") int taskId) {
 			System.out.println(taskId);
 			Response res = null;
@@ -110,7 +111,7 @@ import com.bridgeit.todoApplication.service.ToDoService;
 			User user = (User) sess.getAttribute("user");
 			todo.setUser(user);
 			todo.setId(taskId);
-			todo.setDate(new Date());
+		
 			
 			System.out.println("inside update");
 
@@ -129,5 +130,15 @@ import com.bridgeit.todoApplication.service.ToDoService;
 				return er;
 			}
 		}
+		@RequestMapping(value = "/getUser", method = RequestMethod.GET)
+		   public ResponseEntity<User> findUser(HttpServletRequest request) {
+		   	HttpSession session=request.getSession();
+		   	User user=(User) session.getAttribute("user");
+		       
+		       if(user==null){
+		           return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+		       }
+		       return new ResponseEntity<User>(user, HttpStatus.OK);
+		   }
 	
 }
