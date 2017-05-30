@@ -50,7 +50,7 @@ myApp.controller("SignupCtrl", function ($scope,$state,SignupService) {
 myApp.service('SignupService',function($http){
 	this.signup = function(user){ 
 		return $http({
-			url:"/register",
+			url:"/toDoApp/register",
 			method:"post",
 			data:user
 		});

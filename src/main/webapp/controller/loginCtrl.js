@@ -34,7 +34,7 @@ this.login = function () {
 myApp.service("loginService",function ($http) {
 	this.login = function(user){ 
 		return $http({
-			url:"/login",
+			url:"/toDoApp/login",
 			method:"post",
 			data:user
 		});

@@ -58,7 +58,7 @@ function taskCtrl($scope, $http,$state,$uibModal) {
         	}
        console.log(obj);
        obj.cardColor=color;
-       $http.post("/update/"+id,obj);
+       $http.post("/toDoApp/update/"+id,obj);
       
         /*console.log($scope.todos[index].reminder);
         console.log(day);
@@ -121,7 +121,7 @@ function taskCtrl($scope, $http,$state,$uibModal) {
 
     
     
-    $http.get('/getUser')
+    $http.get('/toDoApp/getUser')
         .then(function(data) {
 		if(data.status==200)
 			{
@@ -134,7 +134,7 @@ function taskCtrl($scope, $http,$state,$uibModal) {
             console.log('Error: ' + data);
         });
     
-    $http.get('/todoList')
+    $http.get('/toDoApp/todoList')
         .then(function(data) {
 		if(data.data.status!==-1)
 			{
@@ -157,7 +157,7 @@ function taskCtrl($scope, $http,$state,$uibModal) {
 	
 	console.log(todoData);
 
-        $http.post('/createtask',todoData)
+        $http.post('/toDoApp/createtask',todoData)
             .then(function(data) {
             	$state.reload();
 //            	$scope.todos.push($scope.formData);
@@ -181,7 +181,7 @@ function taskCtrl($scope, $http,$state,$uibModal) {
     		return myObj.selected===true;
     	});
     	selected.forEach(function(Obj){*/
-        $http.delete('/delete/' + id)
+        $http.delete('/toDoApp/delete/' + id)
             .then(function(data) {
             	var index = $scope.todos.findIndex(function(element, index, array) {
           		  if (element.id === id) {
