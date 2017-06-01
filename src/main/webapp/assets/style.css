@@ -447,3 +447,42 @@ body {
 .test1:hover {
    border: 1px #696969 solid;
 }
+
+.user1{
+	text-align:center;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	
+}
+.user2{
+	text-align:center;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	font: 30px Impact;
+}
+img {
+   color: #eaeaea;
+   
+   font: 80px Impact;
+}
+
+.navbar-nav > li > a{
+	padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: rgba(8, 8, 8, 0);
+}
+.center-modal {
+    position: fixed;
+    top: 10%;
+    left: 18.5%;
+    z-index: 1050;
+    width: 80%;
+    height: 80%;
+    margin-left: -10%;
+}

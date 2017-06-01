@@ -75,7 +75,7 @@ function taskCtrl($scope, $http,$state,$uibModal) {
 
         // Just provide a template url, a controller and call
 // 'showModal'.
-           ModalService.showModal({
+    	$uibModal.open({
              templateUrl: "template/popup.html",
              bodyClass:"my-bodyClass",
              appendElement:"<div style='margin-top: 150;margin-left: 199px;margin-right: 100;'></div>",
@@ -205,7 +205,8 @@ function taskCtrl($scope, $http,$state,$uibModal) {
           templateUrl: "template/popup.html",
           controller: 'todoEditCtrl',
           controllerAs:"$ctrl",
-          size: 'lg',
+          size: 'md',
+          windowClass: 'center-modal',
           resolve:{
         	  todoData:todoData
           }

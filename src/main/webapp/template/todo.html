@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
-                        <div class="container-fluid" >
+                        <div class="container-fluid1" >
                             <div class="navbar-header" >
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                                     <span class="sr-only">Toggle navigation</span>
@@ -11,21 +11,70 @@
 <!-- href="#menu-toggle" --> 
                             </div>
                             <div id="navbar" class="navbar-collapse collapse">
-                                <ul class="nav navbar-nav navbar-right">
-                           <li> <form class="navbar-form navbar-right" >
-                               		<div class="input-group" style="max-width: 900px">
-                                         <input type="text" class="form-control" placeholder="Search..."  name="search" ng-model="searchtext">
+                                <ul class="nav navbar-nav " style="float: right;">
+                           			<li> 
+                           				<form class="navbar-form navbar-left" >
+                               				<div class="input-group" style="max-width: 700px">
+                                        	 <input type="search" class="form-control" placeholder="Search..."  name="search" ng-model="searchtext">
                                       	<div class="input-group-btn">
                                         	<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search" style="line-height: 1.5" ></span></button>
                                       	</div>
                     				</div>
                                 </form>
                               </li>
-                                  <li><a href="#" id="list"><span class="glyphicon glyphicon-refresh" ng-click="readTodo()"></span></a></li>
-                                  <li><button id="list" type="button" class="btn btn-dafault glyphicon" ng-click="isList = !isList" ng-class="{'glyphicon-list': !isList, 'glyphicon-th-large': isList}" style="margin-top: 5px"></button></li>
-                                      <li><a ui-sref="login"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
-                                      <!-- <li><a ui-sref="logout" id="logout"><span class="glyphicon glyphicon-log-out"></span></a></li> -->
-                                </ul>
+                             	<li style="margin-top: 6px;"><button id="list" type="button" class="btn btn-dafault glyphicon" ng-click="isList = !isList" ng-class="{'glyphicon-list': !isList, 'glyphicon-th-large': isList}" style="margin-top: 5px"></button></li>
+                                  <li>
+                                  <a href="#" id="list">
+                                  <span class="glyphicon glyphicon-refresh" ng-click="readTodo()" style="margin-top: 15px">
+                                  </span>
+                                  </a>
+                                  </li>
+                                  <li>
+                                  	<a href=""class="dropdown-toggle" data-toggle="dropdown" style="margin-top: 5px">
+										<img id="menu" class="user2" src=""
+										alt="{{user.fullName.charAt(0).toUpperCase()}}">
+									</a>
+									<div style="width: 325px; height: 180px; margin-left: -260px;top: 50px"class="dropdown-menu ">
+										<div>
+											
+												<img class="user1" src="" alt="{{user.fullName.charAt(0).toUpperCase()}}" style="background-color: black;" >
+											
+											<span style="position: absolute; padding: 14px 0px 0px 32px; font-size: 1.50em; 
+												font-weight: bold;">{{user.fullName}}
+											</span>
+											<span style="position: absolute; margin: 35px; font-size: 1.00em;">
+											<span class="gglyphicon glyphicon-envelope" aria-hidden="true">{{user.email}}</span>
+												
+											</span>
+											<span style="position: absolute; margin: 51px; font-size: 1.00em; margin-left: 36px;">
+											<span class="glyphicon glyphicon-earphone" aria-hidden="true">{{user.mobile}}</span>
+												
+											</span>
+											<span>
+												<button class="btn btn-default btn-sm accBtn" type="button"
+												value="My Account" data-ui-sref="profile" style="margin-top: 75px; margin-left: 30px;">My Account
+												</button>
+											</span>
+										</div>
+										<hr>
+										<div style="background: #E8E8E8;">
+										<div>
+											<a ui-sref="login"><button class="btn btn-default btn-sm"
+												style="margin: -9px 20px 0px 0px; float: right; border: 1px solid #c6c6c6;"
+												type="button" value="signout" >
+												Sign out
+											</button></a>
+										</div>
+										<div>
+											<button class="btn btn-default btn-sm"style="margin: -9px 20px 0px 19px; float: left; border: 1px solid #c6c6c6;"
+												type="button" value="Add Account" data-ng-click="">
+											Add account
+											</button>
+										</div>
+									</div>
+								</li>
+                                  
+                               </ul>
                                 
                             </div>
                         </div>
@@ -125,8 +174,7 @@
                                                                   <div class="col-xs-12 col-md-12">
                                                                       <a><span class="glyphicon glyphicon-trash "  id="trash" ng-click="deleteTodo(x.id)" title="Delete" style="width=:25px; height:25px"></span></a>
                                                                       <a><span class="glyphicon glyphicon-pencil " id="pencil" ng-click="triggerEditMode(x)"title="Edit"style="width=:25px; height:25px"></span></a>
-                                                                      <!-- <i class="fa fa-google-plus-square fa-1x" aria-hidden="true"></i></a>
-                                                                      <i class="fa fa-facebook-official fa-1x" aria-hidden="true"></i></a> -->
+                                                                      
                                                                       <img class="fa  fa-1x" src="https://maxcdn.icons8.com/windows8/PNG/26/Social_Networks/twitter-26.png" title=" Share with Twitter"style="width=:25px; height:25px" >
                                                                       <img src="https://maxcdn.icons8.com/iOS7/PNG/25/Social_Networks/facebook-25.png" title="Share with Facebook" style="width=:25px; height:25px">
                                                                      <img src="https://maxcdn.icons8.com/Color/PNG/24/Social_Networks/google_plus-24.png" title="Share with Google Plus" style="width=:25px; height:25px">
