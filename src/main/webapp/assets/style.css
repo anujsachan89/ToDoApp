@@ -441,7 +441,7 @@ body {
    float: left;
    border: 1px #C0C0C0 solid;
    border-radius: 20px;
-   margin: 4px
+   margin: -4px
 }
 .test1:hover {
    border: 1px #696969 solid;

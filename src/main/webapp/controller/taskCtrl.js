@@ -231,7 +231,7 @@ function todoEditCtrl($scope, $uibModalInstance,todoData,$http){
 	      };
 	 this.ok=function(){
 		console.log($scope.updateTodo);
-		$http.post("/update/"+$scope.updateTodo.id,$scope.updateTodo).then(function(response){
+		$http.post("/toDoApp/update/"+$scope.updateTodo.id,$scope.updateTodo).then(function(response){
 			console.log(response.data);
 			 $uibModalInstance.close({});
 		});

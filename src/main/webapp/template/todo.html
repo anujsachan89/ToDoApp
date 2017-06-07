@@ -161,8 +161,8 @@
                                                       
                                                      
                                                           <!-- <h3 style="overflow: hidden;text-overflow:ellipsis;">Tittle : {{ x.title | limitTo: 10 }}{{x.title.length > 10 ? '...' : ''}}</h3> -->
-                                                          <h3 style="color:#008000;overflow: hidden;text-overflow:ellipsis; margin-top: 2px;margin-bottom: 5px;" ng-bind-html = "x.title | nl2br">Tittle :</h3>
-                                                          <div style="overflow:hidden; text-overflow:ellipsis; margin-bottom: 5px;"  ng-bind-html =  "x.description | nl2br">Description :</div>
+                                                          <h3 style="color:#008000;overflow: hidden;word-wrap: break-word; wortext-overflow:ellipsis; margin-top: 2px;margin-bottom: 5px;" ng-bind-html = "x.title ">Tittle :</h3>
+                                                          <div style="overflow:hidden;word-wrap: break-word; text-overflow:ellipsis; margin-bottom: 5px;"  ng-bind-html =  "x.description | nl2br">Description :</div>
                                                           </div>
                                                           <!-- <div style="overflow:hidden; text-overflow:ellipsis;" >Description : {{ x.description | limitTo: 10 }}{{x.description.length > 10 ? '...' : ''}}</div> -->
                                                          
