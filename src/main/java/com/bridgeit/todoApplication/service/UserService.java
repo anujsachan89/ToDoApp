@@ -8,11 +8,11 @@ public interface UserService {
 	
 	void addEntity(User user) throws Exception;
 
-	User getEntityById(long id) throws Exception;
+	User getEntityById(int id) throws Exception;
 
 	List<User> getEntityList() throws Exception;
 
-	void deleteEntity(long id) throws Exception;
+	void deleteEntity(int id) throws Exception;
 
 	User authUser(String email, String password);
 

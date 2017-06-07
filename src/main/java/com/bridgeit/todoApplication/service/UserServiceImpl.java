@@ -56,14 +56,6 @@ private static final AtomicLong counter = new AtomicLong();
 	{
 		return userDAO.getPicture(userId);
 	}
-	@Override
-	public User getEntityById(long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	
 	}
-	@Override
-	public void deleteEntity(long id) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-}
+
