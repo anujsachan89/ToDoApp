@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bridgeit.todoApplication.model.User;
+import com.bridgeit.todoApplication.model.UserPicture;
 
 @Repository
 @Transactional
@@ -87,5 +88,18 @@ public class UserDAOImpl implements UserDAO{
 		User user = (User) ctr.uniqueResult();
 		log.warn("Getting user by email i.d");
 		return user;
+	}
+
+	@Override
+	public void savePicture(UserPicture picture) {
+			session = sessionFactory.getCurrentSession();
+	        session.saveOrUpdate(picture);
+	}
+	
+	public UserPicture getPicture(int userId)
+	{	
+		session = sessionFactory.getCurrentSession();
+		UserPicture up = (UserPicture) session.get(UserPicture.class, userId);
+		return up;
 	}
 }	

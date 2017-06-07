@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bridgeit.todoApplication.UserDAO.UserDAO;
 import com.bridgeit.todoApplication.model.User;
+import com.bridgeit.todoApplication.model.UserPicture;
 
 
 public class UserServiceImpl implements UserService{
@@ -41,18 +42,28 @@ private static final AtomicLong counter = new AtomicLong();
 	public User authUser(String email, String password) {
 		return userDAO.authUser(email, password);
 	}
+	public User getEntityByEmailId(String email) {
+		return userDAO.getEntityByEmailId(email);
+	}
+
+
+	public void savePicture(UserPicture picture){
+		userDAO.savePicture(picture);
+		
+	}
+
+	public UserPicture getPicture(int userId)
+	{
+		return userDAO.getPicture(userId);
+	}
+	@Override
 	public User getEntityById(long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
 	public void deleteEntity(long id) throws Exception {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public User getEntityByEmailId(String email) {
-		
-		return userDAO.getEntityByEmailId(email);
-	}
-
 }

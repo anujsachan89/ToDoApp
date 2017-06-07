@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-<tx:annotation-driven transaction-manager="transactionManager" />
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	<mvc:annotation-driven />
 	
 	<!--controller and services scan -->
@@ -86,7 +89,7 @@
 
 		<bean id="toDoService" class="com.bridgeit.todoApplication.service.ToDoServiceImpl" />
 	<bean id="tododao" class="com.bridgeit.todoApplication.UserDAO.ToDoDaoImpl"></bean>
-
-
+	<bean id="tokenservice" class="com.bridgeit.todoApplication.service.TokenServiceImpl" />
+	<bean id="tokendao" class="com.bridgeit.todoApplication.UserDAO.TokenDaoImpl"></bean>
 
 </beans>
