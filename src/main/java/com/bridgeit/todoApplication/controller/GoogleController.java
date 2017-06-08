@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bridgeit.todoApplication.Social.Google;
 import com.bridgeit.todoApplication.model.GmailProfile;
 import com.bridgeit.todoApplication.model.User;
-import com.bridgeit.todoApplication.service.TokenService;
 import com.bridgeit.todoApplication.service.UserService;
 
 @Controller
@@ -23,8 +22,7 @@ public class GoogleController{
 	
 	@Autowired
 	private UserService userservice;
-	@Autowired
-	private TokenService tokenservice;
+
 	
 	
 @RequestMapping(value="/loginwithgoogle")

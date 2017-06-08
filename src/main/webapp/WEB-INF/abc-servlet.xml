@@ -66,7 +66,9 @@
 				<value>
 				com.bridgeit.todoApplication.model.ToDoTask
 				</value>
-			
+				<value>
+				com.bridgeit.todoApplication.model.UserPicture
+				</value>
 			</list>
 		</property>
 
@@ -89,7 +91,5 @@
 
 		<bean id="toDoService" class="com.bridgeit.todoApplication.service.ToDoServiceImpl" />
 	<bean id="tododao" class="com.bridgeit.todoApplication.UserDAO.ToDoDaoImpl"></bean>
-	<bean id="tokenservice" class="com.bridgeit.todoApplication.service.TokenServiceImpl" />
-	<bean id="tokendao" class="com.bridgeit.todoApplication.UserDAO.TokenDaoImpl"></bean>
 
 </beans>
