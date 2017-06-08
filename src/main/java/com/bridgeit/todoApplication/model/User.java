@@ -22,7 +22,7 @@ public class User implements Serializable {
 	@GenericGenerator(name="abc",strategy="increment")
 	@GeneratedValue(generator="abc")
 	@Column
-	private int id;
+	private long id;
 	@Column
 	private String fullName;
 	@Column

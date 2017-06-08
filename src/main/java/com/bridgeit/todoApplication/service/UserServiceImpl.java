@@ -27,7 +27,7 @@ private static final AtomicLong counter = new AtomicLong();
 		userDAO.addEntity(user);
 
 	}
-	public User getEntityById(int id) throws Exception{
+	public User getEntityById(long id) throws Exception{
 		return userDAO.getEntityById(id);
 	}
 
@@ -35,7 +35,7 @@ private static final AtomicLong counter = new AtomicLong();
 		return userDAO.getUserList();
 	}
 
-	public void deleteEntity(int id) throws Exception {
+	public void deleteEntity(long id) throws Exception {
 		userDAO.deleteEntity(id);
 	}
 
@@ -52,9 +52,17 @@ private static final AtomicLong counter = new AtomicLong();
 		
 	}
 
-	public UserPicture getPicture(int userId)
+	public UserPicture getPicture(long userId)
 	{
 		return userDAO.getPicture(userId);
+	}
+	public User getEntityById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void deleteEntity(int id) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	}

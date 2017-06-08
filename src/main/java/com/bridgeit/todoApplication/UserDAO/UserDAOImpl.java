@@ -59,7 +59,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 
-	public void deleteEntity(int id) throws Exception {
+	public void deleteEntity(long id) throws Exception {
 		session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("delete from User where id = :id");
 		query.setParameter("id", id);
@@ -102,4 +102,17 @@ public class UserDAOImpl implements UserDAO{
 		UserPicture up = (UserPicture) session.get(UserPicture.class, userId);
 		return up;
 	}
+
+	@Override
+	public User getEntityById(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserPicture getPicture(long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }	
