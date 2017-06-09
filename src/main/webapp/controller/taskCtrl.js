@@ -1,11 +1,12 @@
 angular.module('routerApp').controller("taskCtrl",taskCtrl);
 angular.module('routerApp').controller("todoEditCtrl",todoEditCtrl);
 angular.module('routerApp').directive('contenteditable',contenteditable); 
-function taskCtrl($scope, $http,$state,$uibModal) {
+function taskCtrl($scope, $http,$state,$uibModal,$document) {
     $scope.formData = {};
     $scope.todos = [];
     $scope.user={};
     
+    var bodyRef = angular.element($document[0].body);
     
     $(".slides").sortable({
         placeholder: 'slide-placeholder',
@@ -72,7 +73,7 @@ function taskCtrl($scope, $http,$state,$uibModal) {
     
     
     $scope.openPopup=function(obj,index){
-
+    	bodyRef.addClass('ovh');
         // Just provide a template url, a controller and call
 // 'showModal'.
     	$uibModal.open({
