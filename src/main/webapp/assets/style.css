@@ -393,7 +393,7 @@ body {
     overflow: hidden;
 }
 .modal{
-	overflow: hidden!important;
+	overflow: hidden;
 }
 .slide {
     padding: 15px;

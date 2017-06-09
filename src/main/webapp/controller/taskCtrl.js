@@ -8,6 +8,40 @@ function taskCtrl($scope, $http,$state,$uibModal,$document) {
     
     var bodyRef = angular.element($document[0].body);
     
+    //Facebook Controller//
+    $scope.facebookshare=function(todo){
+		console.log("facebook share")
+		FB.init({
+			appId : '1448587088567231',
+			status: true,
+			xfbml : true
+		});
+		 FB.ui({
+	           method: 'share_open_graph',
+	           action_type: 'og.shares',
+	           action_properties: JSON.stringify({
+	               object : {
+	                  // your url to share
+	                  'og:title': todo.title,
+	                  'og:description': todo.description,
+	                  /*'og:image': 'http://example.com/link/to/your/image.jpg'*/
+	               }
+	           })
+	           },
+	           // callback
+	           function(response) {
+	           if (response && !response.error_message) {
+	               // then get post content
+	               alert('successfully posted. Status id : '+response.post_id);
+	           } else {
+	               alert('Something went error.');
+	           }
+	       });
+	       
+	};
+	
+	
+
     $(".slides").sortable({
         placeholder: 'slide-placeholder',
        axis: "z",
