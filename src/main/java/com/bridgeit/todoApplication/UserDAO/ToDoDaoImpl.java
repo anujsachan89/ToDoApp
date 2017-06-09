@@ -58,8 +58,21 @@ public class ToDoDaoImpl implements ToDoDao {
 
 	@Override
 	public List<ToDoTask> getToDoListByUserId(long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.openSession();
+		Criteria ctr = session.createCriteria(ToDoTask.class);
+		List<ToDoTask> list = ctr.add(Restrictions.eq("user.id", id)).list();
+		session.close();
+		
+		if( list != null)
+		{
+			for (ToDoTask toDoTask : list) {
+				if( toDoTask.getUser() != null){
+					toDoTask.setUser(null);
+				}
+			}
+		}
+		
+		return list;
 	}
 
 }

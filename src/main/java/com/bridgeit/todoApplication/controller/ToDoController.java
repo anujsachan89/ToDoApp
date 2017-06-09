@@ -66,19 +66,26 @@ import com.bridgeit.todoApplication.service.ToDoService;
 			System.out.println(user);
 			ErrorResponse er = null;
 			List<ToDoTask> toDoList;
+			System.out.println("Inside Baby");
 			try {
 				toDoList = toDoService.getToDoList(user.getId());
-
+				
+				
 				TaskResponse tr = new TaskResponse();
 				tr.setStatus(1);
 				tr.setMessage("Data fetched sccessfully");
+				System.out.println(toDoList);
 				tr.setList(toDoList);
+				System.out.println("Inside Try "+tr);
 				return tr;
-			} catch (Exception e) {
+			}
+			catch (Exception e) 
+			{
 				e.printStackTrace();
 				er = new ErrorResponse();
 				er.setStatus(-1);
 				er.setMessage("Internal server error, please try again.");
+				System.out.println("Inside Exception");
 				return er;
 			}
 		}
