@@ -390,6 +390,10 @@ body {
 	margin-top: 150;
     margin-left: 199px;
     margin-right: 100;
+    overflow: hidden;
+}
+.modal{
+	overflow: hidden;
 }
 .slide {
     padding: 15px;

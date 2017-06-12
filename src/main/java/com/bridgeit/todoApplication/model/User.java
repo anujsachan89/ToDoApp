@@ -31,12 +31,14 @@ public class User implements Serializable {
 	private String email;
 	@Column
 	private String password;
+
+	private String picture;
 	
 	public User(){
 		id=0;
 	}
 
-	public User(long id, String fullName, String mobile, String email, String password) {
+	public User(int id, String fullName, String mobile, String email, String password) {
 		super();
 		this.id = id;
 		this.fullName = fullName;
@@ -49,7 +51,7 @@ public class User implements Serializable {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -90,4 +92,10 @@ public class User implements Serializable {
 		return "User [id=" + id + ", fullName=" + fullName + ", mobile=" + mobile + ", email=" + email + ", password="
 				+ password + "]";
 	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	
+	}
+
 }

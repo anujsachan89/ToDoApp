@@ -82,4 +82,23 @@ public class LoginController
 		
 		return terror;
 	}
+	@RequestMapping(value="signout")
+	public @ResponseBody Response signOut(HttpServletRequest request){
+		
+		try{
+		HttpSession sesion = request.getSession();
+		sesion.invalidate();
+		sesion = request.getSession();
+		Response resp = new Response();
+		resp.setStatus(1);
+		resp.setMessage("User signOut successfully");
+		return resp;
+		}catch (Exception e) {
+			e.printStackTrace();
+			ErrorResponse error= new ErrorResponse();
+			error.setStatus(-1);
+			error.setMessage("Internal Server Error please try again");
+			return error;
+		}
+	}
 }

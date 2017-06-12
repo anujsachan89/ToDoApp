@@ -2,7 +2,6 @@ package com.bridgeit.todoApplication.UserDAO;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
@@ -16,30 +15,25 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bridgeit.todoApplication.model.ToDoTask;
 
+ 
 @Repository
 @Transactional
-public class ToDoDaoImpl implements ToDoDao 
-{
-	static final Logger log = Logger.getLogger(ToDoDaoImpl.class);
+public class ToDoDaoImpl implements ToDoDao {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
-	public void addToDoTask(ToDoTask todo) throws HibernateException 
-	{
+	public void addToDoTask(ToDoTask todo) throws HibernateException {
 
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(todo);
-		log.info("Task Added");
 	}
 
-	public List<ToDoTask> getToDoListByUserId(long userid) throws Exception 
-	{
+	public List<ToDoTask> getToDoListByUserId(int userid) throws Exception {
 		
 		Session session = sessionFactory.openSession();
 		Criteria ctr = session.createCriteria(ToDoTask.class);
 		List<ToDoTask> list = ctr.add(Restrictions.eq("user.id", userid)).list();
-		log.info("get task by user id");
 		session.close();
 		
 		if( list != null)
@@ -59,8 +53,26 @@ public class ToDoDaoImpl implements ToDoDao
 		Query query = session.createQuery("delete from ToDoTask where id = :id");
 		query.setParameter("id", taskId);
 		int rowCount = query.executeUpdate();
-		log.warn("Data Deleted with task I.D as"+taskId);
 		System.out.println(rowCount + " Data Deleted");
+	}
+
+	@Override
+	public List<ToDoTask> getToDoListByUserId(long id) throws Exception {
+		Session session = sessionFactory.openSession();
+		Criteria ctr = session.createCriteria(ToDoTask.class);
+		List<ToDoTask> list = ctr.add(Restrictions.eq("user.id", id)).list();
+		session.close();
+		
+		if( list != null)
+		{
+			for (ToDoTask toDoTask : list) {
+				if( toDoTask.getUser() != null){
+					toDoTask.setUser(null);
+				}
+			}
+		}
+		
+		return list;
 	}
 
 }

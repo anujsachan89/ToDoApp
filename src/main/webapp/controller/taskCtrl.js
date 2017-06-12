@@ -1,12 +1,47 @@
 angular.module('routerApp').controller("taskCtrl",taskCtrl);
 angular.module('routerApp').controller("todoEditCtrl",todoEditCtrl);
 angular.module('routerApp').directive('contenteditable',contenteditable); 
-function taskCtrl($scope, $http,$state,$uibModal) {
+function taskCtrl($scope, $http,$state,$uibModal,$document) {
     $scope.formData = {};
     $scope.todos = [];
     $scope.user={};
     
+    var bodyRef = angular.element($document[0].body);
     
+    //Facebook Controller//
+    $scope.facebookshare=function(todo){
+		console.log("facebook share")
+		FB.init({
+			appId : '1448587088567231',
+			status: true,
+			xfbml : true
+		});
+		 FB.ui({
+	           method: 'share_open_graph',
+	           action_type: 'og.shares',
+	           action_properties: JSON.stringify({
+	               object : {
+	                  // your url to share
+	                  'og:title': todo.title,
+	                  'og:description': todo.description,
+	                  /*'og:image': 'http://example.com/link/to/your/image.jpg'*/
+	               }
+	           })
+	           },
+	           // callback
+	           function(response) {
+	           if (response && !response.error_message) {
+	               // then get post content
+	               alert('successfully posted. Status id : '+response.post_id);
+	           } else {
+	               alert('Something went error.');
+	           }
+	       });
+	       
+	};
+	
+	
+
     $(".slides").sortable({
         placeholder: 'slide-placeholder',
        axis: "z",
@@ -72,7 +107,7 @@ function taskCtrl($scope, $http,$state,$uibModal) {
     
     
     $scope.openPopup=function(obj,index){
-
+    	bodyRef.addClass('ovh');
         // Just provide a template url, a controller and call
 // 'showModal'.
     	$uibModal.open({

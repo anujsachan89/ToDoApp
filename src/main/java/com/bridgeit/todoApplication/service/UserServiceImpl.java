@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.bridgeit.todoApplication.UserDAO.UserDAO;
 import com.bridgeit.todoApplication.model.User;
+import com.bridgeit.todoApplication.model.UserPicture;
 
 
 public class UserServiceImpl implements UserService{
@@ -20,7 +21,7 @@ private static final AtomicLong counter = new AtomicLong();
 		userDAO.addEntity(user);
 
 	}
-	public User getEntityById(int id) throws Exception{
+	public User getEntityById(long id) throws Exception{
 		return userDAO.getEntityById(id);
 	}
 
@@ -28,25 +29,35 @@ private static final AtomicLong counter = new AtomicLong();
 		return userDAO.getUserList();
 	}
 
-	public void deleteEntity(int id) throws Exception {
+	public void deleteEntity(long id) throws Exception {
 		userDAO.deleteEntity(id);
 	}
 
 	public User authUser(String email, String password) {
 		return userDAO.authUser(email, password);
 	}
-	public User getEntityById(long id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public void deleteEntity(long id) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
 	public User getEntityByEmailId(String email) {
-		
 		return userDAO.getEntityByEmailId(email);
 	}
 
-}
+
+	public void savePicture(UserPicture picture){
+		userDAO.savePicture(picture);
+		
+	}
+
+	public UserPicture getPicture(long userId)
+	{
+		return userDAO.getPicture(userId);
+	}
+	public User getEntityById(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void deleteEntity(int id) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	}
+
