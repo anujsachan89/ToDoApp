@@ -16,7 +16,7 @@
 <script src="bower_components/jquery/dist/jquery-ui.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-
+<script src="https://connect.facebook.net/enUS/all.js"></script>
 <script
 	src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <!-- 	<script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script> -->
