@@ -86,9 +86,11 @@ public class LoginController
 	public @ResponseBody Response signOut(HttpServletRequest request){
 		
 		try{
-		HttpSession sesion = request.getSession();
+		HttpSession sesion = request.getSession(false);
+		System.out.println("1"+sesion);
 		sesion.invalidate();
-		sesion = request.getSession();
+		sesion=request.getSession();
+		System.out.println(sesion);
 		Response resp = new Response();
 		resp.setStatus(1);
 		resp.setMessage("User signOut successfully");
@@ -100,5 +102,22 @@ public class LoginController
 			error.setMessage("Internal Server Error please try again");
 			return error;
 		}
+	}
+	@RequestMapping(value = "/islogin")
+	public @ResponseBody Response isLogin( HttpServletRequest request, HttpServletResponse response) 
+	{
+		HttpSession session = request.getSession();
+		Response resp = new Response();
+		System.out.println(session.getAttribute("user"));
+		if(session.getAttribute("user")!=null){
+			resp.setMessage("User already Logged in");
+			resp.setStatus(1);
+		}else{
+			resp.setMessage("Please do login anuj hutiye");
+			resp.setStatus(-1);
+		}
+			
+			
+			return resp;	
 	}
 }

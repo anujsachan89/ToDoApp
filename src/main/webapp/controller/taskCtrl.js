@@ -8,6 +8,11 @@ function taskCtrl($scope, $http,$state,$uibModal,$document) {
     
     var bodyRef = angular.element($document[0].body);
     
+    $scope.signout=function(){
+    	$http.get("/toDoApp/signout")
+    }
+    
+    
     //Facebook Controller//
     $scope.facebookshare=function(todo){
 		console.log("facebook share")

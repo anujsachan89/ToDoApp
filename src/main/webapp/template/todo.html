@@ -61,7 +61,7 @@
 										<div>
 											<a ui-sref="login"><button class="btn btn-default btn-sm"
 												style="margin: -9px 20px 0px 0px; float: right; border: 1px solid #c6c6c6;"
-												type="button" value="signout" >
+												type="button" value="signout" ng-click="signout()">
 												Sign out
 											</button></a>
 										</div>
@@ -104,7 +104,7 @@
                                         <a href=""><span class="gglyphicon glyphicon-envelope" aria-hidden="true"></span> {{user.email}}</a>
                                     </li>
                                      <li>
-                                        <a href=""><div class="glyphicon glyphicon-leaf" id="notes"> Notes</div></a>
+                                        <a href="#" ng-click="reload()"><div class="glyphicon glyphicon-leaf" id="notes"> Notes</div></a>
                                     </li>
                                     <li>
                                        <a href=""><div class="glyphicon glyphicon-trash" id="trash1"> Trash</div></a>
@@ -179,7 +179,7 @@
                                                                      
                                                                       <img src="https://maxcdn.icons8.com/iOS7/PNG/25/Social_Networks/facebook-25.png" title="Share with Facebook" style="width=:25px; height:25px" ng-click="facebookshare(x)">
                                                                      <img src="https://maxcdn.icons8.com/Color/PNG/24/Social_Networks/google_plus-24.png" title="Share with Google Plus" style="width=:25px; height:25px">
-                                                                      
+                                                                      <img src="https://png.icons8.com/archive/win8/26" title="Archive" width="26" height="25">
                                                                      
                                                                      
                                     <span class="dropup">
