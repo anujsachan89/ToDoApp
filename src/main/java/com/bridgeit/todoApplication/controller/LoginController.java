@@ -1,9 +1,6 @@
 package com.bridgeit.todoApplication.controller;
 
-import java.io.IOException;
 import java.util.Map;
-import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,8 +17,6 @@ import com.bridgeit.todoApplication.Json.ErrorResponse;
 import com.bridgeit.todoApplication.Json.LoginResponse;
 import com.bridgeit.todoApplication.Json.Response;
 import com.bridgeit.todoApplication.Json.TokenResponse;
-import com.bridgeit.todoApplication.Social.Facebook;
-import com.bridgeit.todoApplication.model.FacebookProfile;
 import com.bridgeit.todoApplication.model.User;
 import com.bridgeit.todoApplication.service.UserService;
 
@@ -103,7 +98,7 @@ public class LoginController
 			return error;
 		}
 	}
-	@RequestMapping(value = "/islogin")
+	@RequestMapping(value = "/isLogin")
 	public @ResponseBody Response isLogin( HttpServletRequest request, HttpServletResponse response) 
 	{
 		HttpSession session = request.getSession();
@@ -113,7 +108,7 @@ public class LoginController
 			resp.setMessage("User already Logged in");
 			resp.setStatus(1);
 		}else{
-			resp.setMessage("Please do login anuj hutiye");
+			resp.setMessage("Please do login first");
 			resp.setStatus(-1);
 		}
 			

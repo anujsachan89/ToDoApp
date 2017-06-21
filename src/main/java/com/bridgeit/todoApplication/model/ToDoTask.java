@@ -24,7 +24,25 @@ public class ToDoTask  implements Serializable{
 	private int id;
 	private String title;
 	private String description;
+	private boolean archieve;
+	private boolean pinned;
 	
+	public boolean isArchieve() {
+		return archieve;
+	}
+
+	public void setArchieve(boolean archieve) {
+		this.archieve = archieve;
+	}
+
+	public boolean isPinned() {
+		return pinned;
+	}
+
+	public void setPinned(boolean pinned) {
+		this.pinned = pinned;
+	}
+
 	private Date reminder;
 	private String cardColor;
 	

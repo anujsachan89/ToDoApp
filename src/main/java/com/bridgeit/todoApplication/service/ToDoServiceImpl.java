@@ -26,5 +26,7 @@ public class ToDoServiceImpl implements ToDoService{
 	public void deleteTaskByToDoId(int taskId) throws Exception {
 		tododao.deleteTaskByTODoId(taskId);
 	}
-
+	public void getArchivedTOdoTask(long userId) throws Exception {
+		tododao.getToDoListByUserId(userId);
+	}
 }

@@ -12,6 +12,46 @@ function taskCtrl($scope, $http,$state,$uibModal,$document) {
     	$http.get("/toDoApp/signout")
     }
     
+    $scope.isLogin=function(){
+    	$http.get("/toDoApp/isLogin").then(function(data){
+    		if(data.data.status!==1){
+    			$state.go("login");
+    		}
+    	});
+    }
+    
+    
+    
+    
+    //pinn//
+    
+    $scope.pinTodo = function(index, id){
+    	console.log(index+" "+id);
+    	
+    	var temp=null;
+    	temp = $scope.todos[index];
+    	
+    	$scope.todos = $scope.todos.map(function(temp){
+	   if(temp.id===id){
+    	if(temp.pinned){
+    		temp.pinned=false;
+    	}else{
+    		temp.pinned=true;
+    	}
+    	//id , temp
+    	$http.post("/toDoApp/update/"+id,temp).then(function(response){
+			console.log(response.data);	
+		});
+	 
+	   }
+	   
+	   return temp;
+   });
+   }
+    
+    
+    
+    
     
     //Facebook Controller//
     $scope.facebookshare=function(todo){

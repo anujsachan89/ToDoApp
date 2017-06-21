@@ -23,32 +23,15 @@ public class ToDoDaoImpl implements ToDoDao {
 	@Autowired
 	SessionFactory sessionFactory;
 
-	public void addToDoTask(ToDoTask todo) throws HibernateException {
+	public void addToDoTask(ToDoTask todo) throws HibernateException 
+	{
 
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(todo);
 	}
 
-	public List<ToDoTask> getToDoListByUserId(int userid) throws Exception {
-		
-		Session session = sessionFactory.openSession();
-		Criteria ctr = session.createCriteria(ToDoTask.class);
-		List<ToDoTask> list = ctr.add(Restrictions.eq("user.id", userid)).list();
-		session.close();
-		
-		if( list != null)
-		{
-			for (ToDoTask toDoTask : list) {
-				if( toDoTask.getUser() != null){
-					toDoTask.setUser(null);
-				}
-			}
-		}
-		
-		return list;
-	}
-
-	public void deleteTaskByTODoId(int taskId) throws Exception {
+	public void deleteTaskByTODoId(int taskId) throws Exception 
+	{
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("delete from ToDoTask where id = :id");
 		query.setParameter("id", taskId);
@@ -57,7 +40,8 @@ public class ToDoDaoImpl implements ToDoDao {
 	}
 
 	@Override
-	public List<ToDoTask> getToDoListByUserId(long id) throws Exception {
+	public List<ToDoTask> getToDoListByUserId(long id) throws Exception 
+	{
 		Session session = sessionFactory.openSession();
 		Criteria ctr = session.createCriteria(ToDoTask.class);
 		List<ToDoTask> list = ctr.add(Restrictions.eq("user.id", id)).list();
@@ -74,5 +58,25 @@ public class ToDoDaoImpl implements ToDoDao {
 		
 		return list;
 	}
+	public List<ToDoTask> getArchivedTOdoTask(long userId) throws Exception 
+	{
 
+		Session session = sessionFactory.openSession();
+		Criteria ctr = session.createCriteria(ToDoTask.class);
+		List<ToDoTask> list = ctr.add(Restrictions.eq("user.id", userId)).add(Restrictions.eq("archive", true)).list();
+		session.close();
+
+		if( list != null)
+		{
+			for (ToDoTask toDoTask : list) 
+			{
+				if( toDoTask.getUser() != null)
+				{
+					toDoTask.setUser(null);
+				}
+			}
+		}
+
+		return list;
+	}
 }

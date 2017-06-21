@@ -80,7 +80,7 @@
                         </div>
                     </nav>
 
-                    <div id="wrapper" class="toggled">
+                    <div id="wrapper" class="toggled" data-ng-init="isLogin()">
                         <div class="container-fluid ">
                             <!-- Sidebar -->
                             <div id="sidebar-wrapper" class="col-md-4-offset col-sm-4-offset col-lg-4-offset">
@@ -104,7 +104,7 @@
                                         <a href=""><span class="gglyphicon glyphicon-envelope" aria-hidden="true"></span> {{user.email}}</a>
                                     </li>
                                      <li>
-                                        <a href="#" ng-click="reload()"><div class="glyphicon glyphicon-leaf" id="notes"> Notes</div></a>
+                                        <a href="" ng-click="reload()"><div class="glyphicon glyphicon-leaf" id="notes"> Notes</div></a>
                                     </li>
                                     <li>
                                        <a href=""><div class="glyphicon glyphicon-trash" id="trash1"> Trash</div></a>
@@ -132,6 +132,7 @@
                                           
                                               <div class="panel panel-default">
                                                   <!-- <div class="panel-heading"> -->
+                                                 
                                                       <h4 class="panel-title">
                                                         <a data-toggle="collapse" data-target="#collapse1" > 
                                                         <input type="text" style="border:none;box-shadow:none;" ng-model="title" placeholder="Tittle" class="form-control" required></a>
@@ -155,16 +156,20 @@
                                         <div class="col-md-3-offset col-sm-3-offset col-lg-3-offset col-xs-12-offset">
                                           <div class="cont" ng-init="readTodo()" ng-class="{list: isList, grid: !isList}">
                                               <div class="cardRow slides" >
-                                                  <div class="card" ng-class="{'col-xs-12':!isList, 'col-md-4':!isList, 'col-sm-4':!isList,'col-lg-3':!isList}" ng-repeat="x in todos | orderBy:'-'| filter :searchtext track by  $index	"style="background-color: {{x.cardColor}}">
+                                                  <div class="card" ng-class="{'col-xs-12':!isList, 'col-md-4':!isList, 'col-sm-4':!isList,'col-lg-3':!isList}" ng-repeat="x in todos | orderBy:'-'| filter :searchtext track by  $index" style="background-color: {{x.cardColor}}">
                                                       <div class="slideDown card-4" >
-                                                      <div ng-click="triggerEditMode(x)">
-                                                      
+                                                      <div class="row">
+                                                      <div class="col-lg-9">
                                                      
                                                           <!-- <h3 style="overflow: hidden;text-overflow:ellipsis;">Tittle : {{ x.title | limitTo: 10 }}{{x.title.length > 10 ? '...' : ''}}</h3> -->
-
-                                                          <h3 style="color:#008000;word-wrap:break-word;text-overflow:ellipsis; margin-top: 2px;margin-bottom: 5px;" ng-bind-html = "x.title | nl2br">Tittle :</h3>
-                                                          <div style="overflow:hidden;word-wrap:break-word; text-overflow:ellipsis; margin-bottom: 5px;"  ng-bind-html =  "x.description | nl2br">Description :</div>
-                                                          </div>
+                                                          <h3 style="color:#008000;word-wrap:break-word;margin-top:0%;text-overflow:ellipsis;margin-bottom: 5px;" ng-bind-html = "x.title | nl2br">Tittle :</h3>
+                                                          <div ng-click="triggerEditMode(x)" style="overflow:hidden;word-wrap:break-word; text-overflow:ellipsis; margin-bottom: 5px;"  ng-bind-html =  "x.description | nl2br">Description :</div>
+                                                        </div>
+                                                        <div class="col-lg-2">
+                                                        <span class="glyphicon glyphicon-pushpin" title="Pin note"style="margin-left: 95%" data-ng-click="pinTodo($index, x.id)" ng-style="{'color': (x.pinned?'blue':'black')}"></span>
+                                                        </div>
+                                                        </div>
+                                                        
                                                           <!-- <div style="overflow:hidden; text-overflow:ellipsis;" >Description : {{ x.description | limitTo: 10 }}{{x.description.length > 10 ? '...' : ''}}</div> -->
                                                          
                                                           
@@ -173,7 +178,7 @@
                                                               <div class="row">
                                                                   <div class="col-xs-12 col-md-12" style="height: 15px!important;padding-left:1px!important">
                                                                       <a><span class="glyphicon glyphicon-trash "  id="trash" ng-click="deleteTodo(x.id)" title="Delete" style="width=:25px; height:25px"></span></a>
-                                                                      <a><span class="glyphicon glyphicon-pencil " id="pencil" ng-click="triggerEditMode(x)"title="Edit"style="width=:25px; height:25px"></span></a>
+                                                                     <!--  <a><span class="glyphicon glyphicon-pencil " id="pencil" ng-click="triggerEditMode(x)"title="Edit"style="width=:25px; height:25px"></span></a> -->
                                                                       
 
                                                                      
